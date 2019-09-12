@@ -1,12 +1,33 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <nav class="nav">
+      <ul class="row">
+        <li class="route">
+          <router-link class="link" to="/">
+            Information
+          </router-link>
+        </li>
+        <li class="route">|</li>
+        <li class="route">
+          <router-link class="link" to="betting">
+            Betting
+          </router-link>
+        </li>
+        <li class="route">|</li>
+        <span class="route">
+          <a class="link" href="https://github.com/Tommytrg/techparty2019-witnet-workshop">Github</a>
+        </span>
+      </ul>
+    </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'app'
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -16,13 +37,22 @@
   text-align: center;
   color: #2c3e50;
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+
+.nav {
+  margin-bottom: 24px;
+
+  .row {
+    display: flex;
+  }
+
+  .route {
+    list-style: none;
+    margin: 16px;
+
+    .link {
+      font-size: 18px;
+      text-decoration: none;
+      color: black;
     }
   }
 }
