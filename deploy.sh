@@ -10,7 +10,7 @@
     cd dist
 
     # if you are deploying to a custom domain
-    # echo 'cryptoquiniela.com' > CNAME
+    echo 'cryptoquiniela.com' > CNAME
 
     git init
     git add -A
