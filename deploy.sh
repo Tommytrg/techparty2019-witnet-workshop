@@ -10,7 +10,7 @@
     cd dist
 
     # if you are deploying to a custom domain
-    echo 'cryptoquiniela.com' > CNAME
+    # echo 'cryptoquiniela.com' > CNAME
 
     git init
     git add -A
@@ -20,7 +20,7 @@
     # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
     # if you are deploying to https://<USERNAME>.github.io/<REPO>
-    # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
+    git push -f git@github.com:Tommytrg/techparty2019-witnet-workshop.git master:gh-pages
 
     cd -
 
