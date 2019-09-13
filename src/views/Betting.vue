@@ -2,6 +2,8 @@
   <div class="betting">
     <Score :homeScore="homeScore" :awayScore="awayScore" :totalBet="totalBet" />
 
+    <button >Resolver</button>
+
     <BetForm :address="address" />
     <BetListing :bets="betListing" />
   </div>
@@ -48,9 +50,9 @@ export default {
       }, { madrid: 0, draw: 0, levante: 0 })
     }
   },
-  data () {
-    return {
-      isFormVisible: false
+  methods: {
+    closeBetting () {
+      this.$store.dispatch('closeBetting')
     }
   }
 }

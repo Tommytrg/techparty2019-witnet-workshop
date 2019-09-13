@@ -61,6 +61,9 @@ export const store = new Vuex.Store({
     pollWeb3 ({ commit }, payload) {
       commit('pollWeb3Instance', payload)
     },
+    closeBetting ({ commit }) {
+      console.log('---', this.state.contractInstance.methods)
+    },
     getContract ({ dispatch, commit }, payload) {
       getContract.then(async result => {
         const currentAway = await result.methods.actualAway().call()
