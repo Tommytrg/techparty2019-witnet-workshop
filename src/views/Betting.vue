@@ -2,7 +2,7 @@
   <div class="betting">
     <Score :homeScore="homeScore" :awayScore="awayScore" :totalBet="totalBet" />
 
-    <button >Resolver</button>
+    <!-- <button >Resolver</button> -->
 
     <BetForm :address="address" />
     <BetListing :bets="betListing" />
