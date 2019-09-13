@@ -2,7 +2,7 @@
   <div class="betting">
     <Score :homeScore="homeScore" :awayScore="awayScore" :totalBet="totalBet" />
 
-    <!-- <button >Resolver</button> -->
+    <button @click="closeBetting" v-if="address === adminAddress">Resolver</button>
 
     <BetForm :address="address" />
     <BetListing :bets="betListing" />
@@ -11,7 +11,7 @@
 
 <script>
 import { mapState } from 'vuex'
-
+import { adminAddress } from '@/utils/constants/dappContract'
 import BetListing from '@/components/BetListing'
 import Score from '@/components/Score'
 import BetForm from '@/components/BetForm'
@@ -35,24 +35,29 @@ export default {
         ...(this.bets.madrid ? this.bets.madrid : []),
         ...(this.bets.levante ? this.bets.levante : []),
         ...(this.bets.draw ? this.bets.draw : [])
-      ].sort((a, b) => parseInt(a.amount) < parseInt(b.amount))
+      ].sort((a, b) => parseFloat(a.amount) < parseFloat(b.amount))
     },
     totalBet () {
       return this.betListing.reduce((acc, bet) => {
         if (bet.team === 0) {
-          acc.draw += parseInt(bet.amount)
+          acc.draw += parseFloat(bet.amount)
         } else if (bet.team === 1) {
-          acc.madrid += parseInt(bet.amount)
+          acc.madrid += parseFloat(bet.amount)
         } else if (bet.team === 2) {
-          acc.levante += parseInt(bet.amount)
+          acc.levante += parseFloat(bet.amount)
         }
         return acc
       }, { madrid: 0, draw: 0, levante: 0 })
     }
   },
+  data () {
+    return {
+      adminAddress
+    }
+  },
   methods: {
     closeBetting () {
-      this.$store.dispatch('closeBetting')
+      this.$store.dispatch('closeBetting', { address: this.address })
     }
   }
 }

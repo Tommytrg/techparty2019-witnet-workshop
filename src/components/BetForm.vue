@@ -78,7 +78,7 @@ export default {
       if (this.amount && this.amount !== 0 && this.result) {
         this.$store.dispatch('createBet', { amount: this.amount, result: this.result, address: this.address })
       } else {
-        this.amountError = !parseInt(this.amount)
+        this.amountError = !parseFloat(this.amount)
         this.resultError = !this.result
       }
     },

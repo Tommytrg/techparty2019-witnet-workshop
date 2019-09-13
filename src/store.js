@@ -43,7 +43,7 @@ export const store = new Vuex.Store({
     },
     pollWeb3Instance (state, payload) {
       state.web3.coinbase = payload.coinbase
-      state.web3.balance = parseInt(payload.balance, 10)
+      state.web3.balance = parseFloat(payload.balance, 10)
     },
     registerContractInstance (state, { contractInstance }) {
       state.contractInstance = contractInstance
@@ -61,8 +61,13 @@ export const store = new Vuex.Store({
     pollWeb3 ({ commit }, payload) {
       commit('pollWeb3Instance', payload)
     },
-    closeBetting ({ commit }) {
-      console.log('---', this.state.contractInstance.methods)
+    async closeBetting ({ commit }, { address }) {
+      console.log(address)
+      console.log('----', this.state)
+      const a = await this.state.contractInstance.methods.resolve().send({ from: address })
+      console.log('ooooo', a)
+
+      // console.log('---', this.state.contractInstance.methods)
     },
     getContract ({ dispatch, commit }, payload) {
       getContract.then(async result => {
