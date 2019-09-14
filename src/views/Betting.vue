@@ -1,7 +1,6 @@
 <template>
   <div class="betting">
     <Score :homeScore="homeScore" :awayScore="awayScore" :totalBet="totalBet" />
-
     <button @click="closeBetting" v-if="address === adminAddress">Resolver</button>
 
     <BetForm :address="address" />
@@ -35,16 +34,19 @@ export default {
         ...(this.bets.madrid ? this.bets.madrid : []),
         ...(this.bets.levante ? this.bets.levante : []),
         ...(this.bets.draw ? this.bets.draw : [])
-      ].sort((a, b) => parseFloat(a.amount) < parseFloat(b.amount))
+      ].sort((a, b) => parseFloat(a.amount) < parseFloat(b.amount)).map(x=> {
+        x.amount = parseFloat(parseFloat(x.amount).toFixed(3))
+        return x
+      })
     },
     totalBet () {
       return this.betListing.reduce((acc, bet) => {
         if (bet.team === 0) {
-          acc.draw += parseFloat(bet.amount)
+          acc.draw += parseFloat(parseFloat(bet.amount).toFixed(3))
         } else if (bet.team === 1) {
-          acc.madrid += parseFloat(bet.amount)
+          acc.madrid += parseFloat(parseFloat(bet.amount).toFixed(3))
         } else if (bet.team === 2) {
-          acc.levante += parseFloat(bet.amount)
+          acc.levante += parseFloat(parseFloat(bet.amount).toFixed(3))
         }
         return acc
       }, { madrid: 0, draw: 0, levante: 0 })

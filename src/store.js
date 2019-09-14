@@ -43,7 +43,7 @@ export const store = new Vuex.Store({
     },
     pollWeb3Instance (state, payload) {
       state.web3.coinbase = payload.coinbase
-      state.web3.balance = parseFloat(payload.balance, 10)
+      state.web3.balance = parseFloat(parseFloat(payload.balance, 10).toFixed(3))
     },
     registerContractInstance (state, { contractInstance }) {
       state.contractInstance = contractInstance

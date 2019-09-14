@@ -2,7 +2,7 @@
   <div class="score">
     <div>
       <Shield team="Real Madrid" :path="realmadridPath" />
-      <p class="total">{{ totalBet.madrid }}</p>
+      <p class="total">{{ fixFloat(totalBet.madrid) }}</p>
     </div>
 
     <div class="result-container">
@@ -15,12 +15,12 @@
       </div>
       <div>
         <p class="total">Empate</p>
-        <p class="total">{{ totalBet.draw}}</p>
+        <p class="total">{{ fixFloat(totalBet.draw) }}</p>
       </div>
     </div>
     <div>
       <Shield team="Levante" :path="levantePath" />
-      <p class="total">{{ totalBet.levante }}</p>
+      <p class="total">{{ fixFloat(totalBet.levante) }}</p>
     </div>
   </div>
 </template>
@@ -54,6 +54,11 @@ export default {
     return {
       realmadridPath: realmadrid,
       levantePath: levante
+    }
+  },
+  methods: {
+    fixFloat (x) {
+      return parseFloat(parseFloat(x).toFixed(3))
     }
   }
 }
